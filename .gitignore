@@ -1,0 +1,12 @@
+node_modules
+.next
+dist
+build
+.env
+.cache
+coverage
+*.log
+
+# For Next.js specifically:
+.next/
+out/
