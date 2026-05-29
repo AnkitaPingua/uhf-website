@@ -28,22 +28,26 @@ uhf/
 ├── public/                 # Static assets (images, fonts, cutouts)
 └── src/
     ├── app/                # Next.js App Router core
-    │   ├── favicon.ico
+    │   ├── (public)/       # Public-facing routes (about, programs, events, fundraiser)
+    │   ├── login/          # Supabase authentication - Login flow
+    │   ├── signup/         # Supabase authentication - Sign up flow
+    │   ├── admin/          # Admin Dashboard (protected route)
+    │   ├── executive/      # Executive Dashboard
+    │   ├── teamleader/     # Team Leader Dashboard
+    │   ├── intern/         # Intern Dashboard
+    │   ├── api/            # API routes (auth, donations, media, users)
     │   ├── globals.css     # Global styles and Tailwind configuration
     │   ├── layout.tsx      # Root layout, HTML wrapper, and Font configuration
     │   └── page.tsx        # Main entry point assembling the application
     │
-    └── components/         # Reusable UI & Animation components
-        ├── Documentary.tsx
-        ├── EmotionalBreak.tsx
-        ├── Events.tsx
-        ├── Footer.tsx
-        ├── Hero.tsx
-        ├── ImpactStats.tsx
-        ├── OpeningAnimation.tsx
-        ├── Programs.tsx
-        ├── SmoothScroll.tsx
-        └── Stories.tsx
+    ├── components/         # Reusable UI & Animation components
+    ├── hooks/              # Custom React hooks
+    ├── lib/                # Libraries and utility functions
+    │   ├── supabase/       # Supabase SSR clients (server, client, admin)
+    │   └── utils/          # Helper functions (GSAP text splitting, etc.)
+    ├── services/           # External service integrations
+    ├── types/              # TypeScript type definitions
+    └── proxy.ts            # Next.js edge routing / session middleware
 ```
 
 ---
@@ -53,7 +57,13 @@ uhf/
 ### Core Application (`src/app/`)
 * **`layout.tsx`**: Defines the root HTML shell. It is responsible for loading the optimized web fonts (`Inter` and `Cormorant Garamond`) and injecting the `SmoothScroll` context across all routes.
 * **`page.tsx`**: The primary landing page that stitches all modular sections (Hero, Programs, Stories, etc.) together to form the unified continuous scrolling experience.
+* **`login/page.tsx` & `signup/page.tsx`**: Fully animated authentication routes interacting directly with the Supabase backend via client components. Includes error handling and dashboard redirection.
+* **`admin/page.tsx`**: A protected dashboard for authenticated users that verifies the session via Supabase before rendering personalized data.
 * **`globals.css`**: Contains Tailwind directives and custom CSS for cinematic aesthetic details, such as text-highlighting rules and custom scrollbar hiding.
+
+### Library & Utilities (`src/lib/`)
+* **`supabase/`**: Contains the configured Supabase clients needed to talk to the PostgreSQL backend via `@supabase/supabase-js` and `@supabase/ssr`.
+* **`utils/animations.ts`**: Utilities for parsing and staggering text for advanced GSAP animations, ensuring high-performance letter-by-letter effects without layout breakage.
 
 ### UI & Animations (`src/components/`)
 * **`OpeningAnimation.tsx`**: Manages the ultra-cinematic first load experience. Orchestrates the 120px circular logo's entrance, its zoom mechanics, its seamless diagonal translation into the top-left corner, and hosts the persistent top navigation bar.

@@ -29,6 +29,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${cormorant.variable} antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-[#050505] text-white selection:bg-[#FF9A3C]/30 selection:text-white">
         {children}

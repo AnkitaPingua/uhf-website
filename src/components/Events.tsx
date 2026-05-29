@@ -35,7 +35,7 @@ export default function Events() {
   return (
     <section ref={sectionRef} className="w-full bg-[#050505] py-32 border-t border-white/5">
       <div className="max-w-[1440px] mx-auto px-[5vw] flex flex-col md:flex-row justify-between gap-16 md:gap-0">
-        
+
         {/* Left Side */}
         <div ref={leftRef} className="w-full md:w-[45%]">
           <h2 className="font-cormorant font-light italic text-[48px] md:text-[56px] leading-[1.05] text-[#F5F2EB] max-w-[400px]">
@@ -47,7 +47,7 @@ export default function Events() {
         <div className="w-full md:w-[50%] flex flex-col">
           <div className="w-full h-[1px] bg-white/10"></div>
           {events.map((ev, i) => (
-            <div 
+            <div
               key={i}
               ref={(el) => { itemsRef.current[i] = el; }}
               className="flex items-center justify-between py-8 border-b border-white/10 group cursor-pointer hover:bg-white/5 transition-colors px-4 -mx-4"
